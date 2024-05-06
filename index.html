@@ -14,6 +14,10 @@
     margin: 14px;
     float:left;
 }
+.active {
+  color: white;          
+  background-color:blue; /* Cambia el color a amarillo cuando está activo */
+        }
   </style>
 
   <script>
@@ -44,26 +48,46 @@
   <table>
     <tr>
       <td>
-        <div style="font-size: 18pt;font-weight: bold;">Connectd pairs</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U' R U R' U2 R U' R'|flags=showalg">F2L5</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=d R' U' R U2 R' U R|flags=showalg">F2L6</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U' R U2 R' U2 R U' R'|flags=showalg">F2L7</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=d R' U2 R U2 R' U R|flags=showalg">F2L8</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U' R U' R' U F' U' F|flags=showalg">F2L9</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U' R U R' U R U R'|flags=showalg">F2L10</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U R U2 R' U R U' R'|flags=showalg">F2L19</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=y' U' R' U2 R U' R' U R|flags=showalg">F2L20</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U2 R U R' U R' U' R'|flags=showalg">F2L21</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=F L' U2 L F|flags=showalg">F2L22</div>
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U' R U R' U2 R U' R'|flags=showalg">F2L5</div>
+        <div id="1" style="display: none;" style="font-size: 18pt;font-weight: bold;">Connectd pairs</div>
+        <span><button id="btn1" onclick="toggleDiv('div1')">F2L5</button> <div id="div1" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U' R U R' U2 R U' R'|flags=showalg">F2L5</div></span>
+        <span><button id="btn2" onclick="toggleDiv('div2')">F2L6</button> <div id="div2" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=d R' U' R U2 R' U R|flags=showalg">F2L6</div>
+        <span><button id="btn3" onclick="toggleDiv('div3')">F2L7</button> <div id="div3" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U' R U2 R' U2 R U' R'|flags=showalg">F2L7</div>
+        <span><button id="btn4" onclick="toggleDiv('div4')">F2L8</button> <div id="div4" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=d R' U2 R U2 R' U R|flags=showalg">F2L8</div>
+        <span><button id="btn5" onclick="toggleDiv('div5')">F2L9</button> <div id="div5" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U' R U' R' U F' U' F|flags=showalg">F2L9</div>
+        <span><button id="btn6" onclick="toggleDiv('div6')">F2L10</button><div id="div6" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U' R U R' U R U R'|flags=showalg">F2L10</div>
+        <span><button id="btn7" onclick="toggleDiv('div7')">F2L19</button><div id="div7" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U R U2 R' U R U' R'|flags=showalg">F2L19</div>
+        <span><button id="btn8" onclick="toggleDiv('div8')">F2L20</button><div id="div8" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=y' U' R' U2 R U' R' U R|flags=showalg">F2L20</div>
+        <span><button id="btn9" onclick="toggleDiv('div9')">F2L21</button><div id="div9" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=U2 R U R' U R' U' R'|flags=showalg">F2L21</div>
+        <span><button id="btn10" onclick="toggleDiv('div10')">F2L22</button><div id="div10" style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=F L' U2 L F|flags=showalg">F2L22</div>
 
         
-        <div class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=F U R U' R' F' R U' R'|flags=showalg">...</div>
+        <div style="display: none;" class="roofpig rp440" data-config="colored=U- U|base=F2L|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=F U R U' R' F' R U' R'|flags=showalg">...</div>
       </td>
     </tr>
   </table>
 </div>
 
+<script>
+  // function toggleDiv(id) {
+  //     var div = document.getElementById(id);
+  //     if (div.style.display === "none") {
+  //         div.style.display = "block";
+  //     } else {
+  //         div.style.display = "none";
+  //     }
+  // }
+  function toggleDiv(id) {
+            var div = document.getElementById(id);
+            var button = document.getElementById('btn' + id.slice(-1)); // Obtiene el botón correspondiente
+            if (div.style.display === "none") {
+                div.style.display = "block";
+                button.classList.add("active"); // Agrega la clase 'active' al botón
+            } else {
+                div.style.display = "none";
+                button.classList.remove("active"); // Remueve la clase 'active' del botón
+            }
+        }
+</script>
 <script src="jquery-3.1.1.min.js"></script>
 <script src="roofpig_and_three.min.js"></script>
 
