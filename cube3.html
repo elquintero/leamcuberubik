@@ -11,8 +11,8 @@
     <!-- Estilo para el canvas -->
     <style>
         #cubeContainer {
-            width: 100%; /* Ajustar el ancho al 100% del contenedor */
-            height: 300px; /* Altura fija */
+            width: 50%; /* Ajustar el ancho al 100% del contenedor */
+            height: 1000px; /* Altura fija */
             margin-bottom: 20px;
         }
         .buttonContainer {
@@ -28,13 +28,21 @@
     </div>
 
     <!-- Div donde se generará el cubo -->
-    <div id="cubeContainer" class="roofpig"></div>
+    <div style="display: none;" id="cubeContainer" class="roofpig"></div>
 
     <script>
+
+        window.onload = function() {
+
+           
+          
+
+        };
         // Función para crear un cubo dinámico con un algoritmo dado
         function createCube(algorithm) {
             // Eliminar el cubo actual si existe
             var cubeContainer = document.getElementById('cubeContainer');
+            cubeContainer.style.display = "block";
             cubeContainer.innerHTML = '';
 
             // Configuración del cubo con el algoritmo dado
@@ -45,6 +53,8 @@
             // Crear el cubo en el contenedor especificado
             CubeAnimation.create_in_dom('#cubeContainer', config, divAttributes);
         }
+
+       
     </script>
 </body>
 </html>
