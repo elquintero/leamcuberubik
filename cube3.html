@@ -11,20 +11,29 @@
     <!-- Estilo para el canvas -->
     <style>
         #cubeContainer {
-            width: 50%; /* Ajustar el ancho al 100% del contenedor */
-            height: 1000px; /* Altura fija */
+            width: 250px; /* Ajustar el ancho al 100% del contenedor */
+            height: 250px /*  Altura fija */
+            border: none !important;
             margin-bottom: 20px;
+          
+          
         }
         .buttonContainer {
             margin-bottom: 10px;
+
         }
     </style>
 </head>
 <body>
     <!-- Contenedor para los botones -->
     <div class="buttonContainer">
-         <button onclick="createCube('U\' R U R\' U2 R U\' R\'')">Crear Cubo 1</button> 
-         <button onclick="createCube('d R\' U\' R U2 R\' U R')">Crear Cubo 2</button> 
+         <button onclick="createCube('U\' R U R\' U2 R U\' R\'')">F2L5
+             <img src="F2L5.png" width="80px" />
+            </button> 
+         <button onclick="createCube('d R\' U\' R U2 R\' U R')">
+            <img src="F2L6.png" width="80px" />    
+            F2L56
+        </button> 
     </div>
 
     <!-- Div donde se generará el cubo -->
@@ -52,6 +61,7 @@
 
             // Crear el cubo en el contenedor especificado
             CubeAnimation.create_in_dom('#cubeContainer', config, divAttributes);
+            cubeContainer.style.border = "none";
         }
 
        
