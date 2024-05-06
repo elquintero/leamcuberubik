@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubos Dinámicos con Roofpig</title>
+    <!-- Incluir jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Incluir Roofpig -->
+    <script src="roofpig_and_three.min.js"></script>
+    <!-- Estilo para el canvas -->
+    <style>
+        #cubeContainer {
+            width: 400px;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        .buttonContainer {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenedor para los botones -->
+    <div class="buttonContainer">
+         <button onclick="createCube('U\' R U R\' U2 R U\' R\'')">Crear Cubo 1</button> 
+         <button onclick="createCube('d R\' U\' R U2 R\' U R ')">Crear Cubo 1</button> 
+    </div>
+
+    <!-- Div donde se generará el cubo -->
+    <div class="roofpig"  id="cubeContainer"></div>
+
+    <script>
+        // Función para crear un cubo dinámico con un algoritmo dado
+        function createCube(algorithm) {
+            // Eliminar el cubo actual si existe
+            var cubeContainer = document.getElementById('cubeContainer');
+            cubeContainer.innerHTML = '';
+
+            // Configuración del cubo con el algoritmo dado
+            var config = "colored=U- U|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=1700|alg=" + algorithm + "|flags=showalg"  
+            // "alg=" + algorithm;
+            var divAttributes = "style='width:400px; height:400px;'";
+
+            // Crear el cubo en el contenedor especificado
+            CubeAnimation.create_in_dom('#cubeContainer', config, divAttributes);
+        }
+    </script>
+</body>
+</html>
