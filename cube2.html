@@ -192,6 +192,12 @@
        <button class="fbutton"class="fbutton"onclick="createCube('y R\' u\' R\' u R')">
             F2L100<img src="F2L100.png" class="sbutton" />    
        </button>
+
+       <p class="Titulo">Solucines</p>
+       <button class="fbutton"class="fbutton"onclick="createCube('R\' U L2 D2 B\' F D R\' D D D\' U\' F U F\' U2 U U\' F U\' F\' L\' U L U2 L\' U2\' L U2 L\' U\' R\' U R U\' U B\' U2\' B B\' U2 B U\' L U\' L\' U\' L L U\' L\' U\' U2\' F U F\' U2\' U2 F U\' F\' F U F\' U\' U\' U F U F\' U2\' L\' U L L F U F\' U\' L\' U\' U2\' U U R U\' R\' U\' F\' U F U\' U\' F R U R\' U\' F\' U2 U R R\' R U R\' U\' R\' F R2 U\' R\' U\' R U R\' F\' U2 R2 U R U R\' U\' R\' U\' R\' U R\' R2 U R U R\' U\' R\' U\' R\' U R\'',1)">
+       1<img src="1.png" class="sbutton" />    
+       </button>
+
     </div>
 
     <!-- Div donde se generará el cubo -->
@@ -214,7 +220,7 @@
         }
 
         // Función para crear un cubo dinámico con un algoritmo dado
-        function createCube(algorithm) {
+        function createCube(algorithm, t) {
             // Eliminar el cubo actual si existe
             var cubeContainer = document.getElementById('cubeContainer');
             cubeContainer.style.display = "block";
@@ -227,7 +233,12 @@
             buttonContainer.style.display = "none";
 
             // Configuración del cubo con el algoritmo dado
-            var config = "colored=U- U|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=800|alg=" + algorithm + "|flags=showalg";
+            var config ="";
+            if (t=0)
+                config = "colored=U- U|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=800|alg=" + algorithm + "|flags=showalg";
+            else
+                config = "colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=800|alg=" + algorithm + "|flags=showalg";
+
             var divAttributes = "style='width:100%; height:300px;'"; // Ajustar el estilo del contenedor
 
             // Crear el cubo en el contenedor especificado
