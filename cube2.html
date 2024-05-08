@@ -271,8 +271,8 @@
             var favorites = JSON.parse(localStorage.getItem('favorites')) || {};
             favorites[buttonId] = !favorites[buttonId];
             localStorage.setItem('favorites', JSON.stringify(favorites));
-            ActiveFavorid(buttonId)
-            
+            ActiveFavorid(buttonId);
+            updateFavoriteButtons();
         }
         function isFavorite(buttonId) {
             var favorites = JSON.parse(localStorage.getItem('favorites')) || {};
@@ -294,7 +294,7 @@
             for (var i = 0; i < buttons.length; i++) {
                 var buttonId  = buttons[i];
                 var span = buttonId.querySelector("span");
-                if (isFavorite(buttonId.id)) {
+                if (isFavorite("fav" + buttonId.id)) {
                     span.classList.add('favorited');
                 } else {
                     span.classList.remove('favorited');
