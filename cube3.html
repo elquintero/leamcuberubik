@@ -4,102 +4,142 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cubos Dinámicos con Roofpig</title>
-    <!-- Incluir jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <!-- Incluir Roofpig -->
     <script src="roofpig_and_three.min.js"></script>
-    <!-- Estilo para el canvas -->
     <style>
+        /* Estilo para el canvas */
         #cubeContainer {
-            width: 250px; /* Ajustar el ancho al 100% del contenedor */
-            height: 250px /*  Altura fija */
+            width: 300px; /* Ajustar el ancho al 100% del contenedor */
+            height: 300px; /* Altura fija */
             border: none !important;
-            margin-bottom: 20px;
-            
-          
-          
         }
         .buttonContainer {
             margin-bottom: 10px;
-
         }
         .Titulo {   
+            color: #0072A8;
             font-family: 'Verdana', 'Calibri', 'Trebuchet MS', sans-serif;
             font-weight: bold;
+        }
+        .sbutton {   
+            width: 120px;
+        }
+        .fbutton {
+            margin-bottom: 5pt;
+            font-weight: bold;
+            position: relative; /* Añadido para posicionar correctamente el botón favorito */
+            margin-bottom: 5pt;
+            font-weight: bold;
+        }
+        .roofpig-past-algtext {
+            background-color: #26A0DA !important;
+        }
+        .closeButton {
+            font-family: 'Segoe UI', 'Verdana', 'Calibri', 'Trebuchet MS', sans-serif;
+            font-size: 24px;
+            color: #494949;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            background: none;
+        }
+        .favoriteButton {
+          
+            position: absolute;
+            top: -5px;
+            right: 5px;
+            font-size: 16px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            /* Cambio de color dependiendo de la clase 'favorited' */
+            color: #333;
+        }
+        .favoriteButton.favorited {
+            color: #0072A8;
         }
     </style>
 </head>
 <body>
-    <!-- Contenedor para los botones -->
     <div class="buttonContainer">
-        <p class="Titulo">Free Pairs</p>
-        <button onclick="createCube('R\' F R F\'')">
-            F2L01<img src="F2L01.png" width="75px" />
-        </button> 
-        <p class="Titulo">Disconnected Pairs</p>
-         <button onclick="createCube('U\' R U R\' U2 R U\' R\'')">
-            F2L05<img src="F2L05.png" width="75px" />
-        </button> 
-         <button onclick="createCube('d R\' U\' R U2 R\' U R')">
-            F2L06<img src="F2L06.png" width="75px" />    
-        </button>
-        <button onclick="createCube('U\' R U2 R\' U2 R U\' R\'')">
-            F2L07<img src="F2L07.png" width="75px" />    
-        </button> 
-        <button onclick="createCube('d R\' U2 R U2 R\' U R')">
-            F2L08<img src="F2L08.png" width="75px" />    
-        </button>  
-        <button onclick="createCube('U\' R U\' R\' U F\' U\' F')">
-            F2L09<img src="F2L09.png" width="75px" />    
-        </button>
-        <button onclick="createCube('U\' R U R\' U R U R\'')">
-            F2L10<img src="F2L10.png" width="75px" />    
-        </button>
-        <button onclick="createCube('U R U2 R\' U R U\' R\'')">
-            F2L19<img src="F2L19.png" width="75px" />    
-        </button>
-        <button onclick="createCube('y\' U\' R\' U2 R U\' R\' U R')">
-            F2L20<img src="F2L20.png" width="75px" />    
-        </button>
-        <button onclick="createCube('U2 R U R\' U R U\' R\'')">
-            F2L21<img src="F2L21.png" width="75px" />    
-        </button>
-        <button onclick="createCube('F\' L\' U2 L F')">
-            F2L22<img src="F2L22.png" width="75px" />    
-        </button>
+        <p class="Titulo">Pares libres</p>
+        <!-- Agregamos el botón de favorito dentro de cada botón -->
+        <span style="position: relative;" >
+            <button class="fbutton" id="F2L01" onclick="createCube('R\' F R F\'')">F2L01<img src="F2L01.png" class="sbutton" />
+            <button class="favoriteButton" onclick="toggleFavorite('F2L01')">★</button>
+        </span>
+        <span style="position: relative;" >
+            <button class="fbutton"class="fbutton"onclick="createCube('y U\' L\' U L')">F2L02<img src="F2L02.png" class="sbutton" /></button> 
+            <button class="favoriteButton" onclick="toggleFavorite('F2L02')">★</button>
+        </span>
+        <span style="position: relative;" >
+            <button class="fbutton"class="fbutton"onclick="createCube('y L\' U\' L')">F2L03<img src="F2L03.png" class="sbutton" /></button>
+            <button class="favoriteButton" onclick="toggleFavorite('F2L03')">★</button>
+        </span>
     </div>
 
-    <!-- Div donde se generará el cubo -->
-    <div style="margin-left: 50px;margin-top: 100px;">
-    <div style="display: none;" id="cubeContainer"  class="roofpig"></div>
+    <div style="margin-left: 38px; margin-top: 80px;">
+        <div style="display: none;" id="cubeContainer1">
+            <button class="closeButton" onclick="closeCubeContainer()">X</button>
+            <div id="cubeContainer" class="roofpig"></div>
+        </div>
     </div>
 
     <script>
+        function toggleFavorite(buttonId) {
+            var favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+            favorites[buttonId] = !favorites[buttonId];
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoriteButtons();
+        }
 
-        window.onload = function() {
+        function isFavorite(buttonId) {
+            var favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+            return favorites[buttonId] || false;
+        }
 
-           
-          
+        function updateFavoriteButtons() {
+            var buttons = document.getElementsByClassName('favoriteButton');
+            for (var i = 0; i < buttons.length; i++) {
+                var buttonId = buttons[i].previousElementSibling.getAttribute('id');
+                if (isFavorite(buttonId)) {
+                    buttons[i].classList.add('favorited');
+                } else {
+                    buttons[i].classList.remove('favorited');
+                }
+            }
+        }
 
+        window.onload = function () {
+            updateFavoriteButtons();
         };
-        // Función para crear un cubo dinámico con un algoritmo dado
+
+        function closeCubeContainer() {
+            var cubeContainer = document.getElementById('cubeContainer1');
+            cubeContainer.style.display = "none";
+            var buttonContainer = document.getElementsByClassName('buttonContainer')[0];
+            buttonContainer.style.display = "block";
+        }
+
         function createCube(algorithm) {
-            // Eliminar el cubo actual si existe
             var cubeContainer = document.getElementById('cubeContainer');
             cubeContainer.style.display = "block";
             cubeContainer.innerHTML = '';
+            var cubeContainer = document.getElementById('cubeContainer1');
+            cubeContainer.style.display = "block";
+            var buttonContainer = document.getElementsByClassName('buttonContainer')[0];
+            buttonContainer.style.display = "none";
 
-            // Configuración del cubo con el algoritmo dado
             var config = "colored=U- U|colors=F:#015BFC R:#F70000 U:#FFFD00 L:#FA6700 B:#00EE00 D:#F1F1F1|hover=none|speed=800|alg=" + algorithm + "|flags=showalg";
-            // "alg=" + algorithm;
+
             var divAttributes = "style='width:100%; height:300px;'"; // Ajustar el estilo del contenedor
 
-            // Crear el cubo en el contenedor especificado
             CubeAnimation.create_in_dom('#cubeContainer', config, divAttributes);
             cubeContainer.style.border = "none";
         }
-
-       
     </script>
 </body>
 </html>
