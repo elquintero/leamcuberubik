@@ -22,7 +22,7 @@
     ];
 
   # Enable previews and customize configuration
-  idx.previews = {
+  previews = {
   enable = true;
   previews = {
     # The following object sets web previews
