@@ -27,6 +27,7 @@
             /* background-color: transparent !important; */
             
         }
+            
         #cubeContainer {
             width: 300px; /* Ajustar el ancho al 100% del contenedor */
             height: 300px; /* Altura fija */
@@ -84,7 +85,7 @@
 <body>
     <!-- Contenedor para los botones -->
     <div class="buttonContainer">
-        <p class="Titulo">Pares libres.</p>
+        <p class="Titulo">Pares libres</p>
         <button id="F2L01" class="fbutton"class="fbutton" onclick="createCube('R\' F R F\'', this,0)">
          F2L01<img src="F2L01.png" class="sbutton"  /> <span class="favoriteButton" >★</span>
         </button> 
@@ -238,7 +239,10 @@
     <div style="margin-left: 38px;width:400px;">
        
        <div style="display: none;" id="cubeContainer1">
-         <span class="Titulo">CASO : </span><span  id="txtTitulo" class="Titulo"></span>   <button onclick="showPreviousCube()" class="fa fa-chevron-left" style="margin-left: 250px;"></button>  <button class="fa fa-chevron-right" onclick="showNextCube()"></button>
+         <span class="Titulo">CASO : </span><span  id="txtTitulo" class="Titulo"></span></p>
+         <span  style="padding-top:20px;">STAR:</span> <span style="font-family: Verdana, Geneva, Tahoma, sans-serif;" id="star">ggg</span>
+         <button onclick="showPreviousCube()" class="fa fa-chevron-left" style="margin-left: 250px;"></button>  <button class="fa fa-chevron-right" onclick="showNextCube()"></button>
+         
          <button class="closeButton" onclick="closeCubeContainer()"><span class="fas fa-times"></span></button>
             <div style="margin-top: 80px;" id="cubeContainer" class="roofpig">
             
@@ -257,8 +261,23 @@
             buttonContainer.style.display = "block";
         }
 
+        function invertAlgorithm(algorithm) {
+            const moves = algorithm.split(' ');
+            const invertedMoves = moves.reverse().map(move => {
+                if (move.endsWith("'")) {
+                    return move.slice(0, -1);
+                } else if (move.endsWith("2")) {
+                    return move;
+                } else {
+                    return move + "'";
+                }
+            });
+            return invertedMoves.join(' ');
+        }
         // Función para crear un cubo dinámico con un algoritmo dado
         function createCube(algorithm, btn, t) {
+            const invertedAlgorithm = invertAlgorithm(algorithm);
+            document.getElementById('star').innerText = invertedAlgorithm;
             var id=btn.getAttribute('id');
             // Eliminar el cubo actual si existe
             var cubeContainer = document.getElementById('cubeContainer');
